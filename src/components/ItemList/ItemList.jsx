@@ -5,7 +5,7 @@ export default function ItemList ({items}) {
 
     return (
         <div>
-            {items.length == 0 ? "Cargando" : items.map((e,index) => <Item key={e.id} item={e} /> )}
+            {items.length == 0 ? "Cargando" : items.map((e) => <Item key={e.id} item={e} /> )}
         </div>
     )
 }

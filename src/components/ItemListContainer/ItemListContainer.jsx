@@ -3,8 +3,7 @@ import ItemCount from '../ItemCount/ItemCount';
 import onAdd from '../../helpers/onAdd';
 import ItemList from '../ItemList/ItemList';
 
-export const ItemListContainer = (props) => {
-  const { greeting} = props;
+export const ItemListContainer = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -13,10 +12,19 @@ export const ItemListContainer = (props) => {
       .then(resp => { resp.json().then(data => { setItems(data)}) })
     },4000)
     
-  },[])    
+  },[])
+  
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     fetch("assets/data.json")
+  //     .then(resp => { resp.json()}) 
+  //     .then(data => { setItems(data)}) 
+  //   },4000)
+    
+  // },[])
+  
   return (
     <>
-      <h1>{greeting}</h1>
       <ItemCount stockInit={5} initial={1} onAdd={onAdd}/>
       <ItemList items={items}/>
     </>

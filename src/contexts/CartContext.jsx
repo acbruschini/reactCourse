@@ -14,10 +14,17 @@ export const CartContextProvider = ({children}) => {
         setCart([]);
     }
 
+    // const isInCart = (id) => {
+    //     return cart.find(e => e.id == id);
+    // }
+
     const isInCart = (id) => {
-        return cart.find(e => e.id == id);
+        let retorno = cart.find(e => e.id == id);
+        return retorno == undefined ? false : true;
     }
 
+    console.log("CARRITO: "+cart)
+;
     return (
         <CartContext.Provider value={{cart,addToCart,clear,isInCart}}>
             {children}

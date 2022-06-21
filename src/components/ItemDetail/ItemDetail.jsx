@@ -9,8 +9,9 @@ export const ItemDetail = ({ item }) => {
   const [ cantidad, setCantidad ] = useState(null);
 
   function onAdd(cantidad) {
-    isInCart(item.id) == undefined ? addToCart({...item, cantidad}) : null //NO PERMITE DUPLICADOS
-    //setCantidad(cantidad);
+    console.log("is in cart: "+isInCart(item.id))
+    !isInCart(item.id) ? addToCart({...item, cantidad}) : null //NO PERMITE DUPLICADOS
+    setCantidad(cantidad);
   }
 
   console.log(cart)

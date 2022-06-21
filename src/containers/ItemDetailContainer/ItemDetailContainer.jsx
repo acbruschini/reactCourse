@@ -14,7 +14,7 @@ export const ItemDetailContainer = () => {
           console.log(item);
         });
       });
-    }, 3000);
+    }, 500);
   }, []);
 
   return (

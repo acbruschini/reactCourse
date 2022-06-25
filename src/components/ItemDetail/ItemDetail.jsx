@@ -5,16 +5,15 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 
 export const ItemDetail = ({ item }) => {
-  const {cart, addToCart, isInCart} = useContext(CartContext)
-  const [ cantidad, setCantidad ] = useState(null);
+  const { cart, addToCart, isInCart } = useContext(CartContext);
+  const [cantidad, setCantidad] = useState(null);
 
   function onAdd(cantidad) {
-    console.log("is in cart: "+isInCart(item.id))
-    !isInCart(item.id) ? addToCart({...item, cantidad}) : null //NO PERMITE DUPLICADOS
+    addToCart(item, cantidad);
     setCantidad(cantidad);
   }
 
-  console.log(cart)
+  console.log(cart);
 
   return (
     <div className="row">
@@ -29,14 +28,17 @@ export const ItemDetail = ({ item }) => {
         </div>
       </div>
       <div className="col-md-6 mt-5">
-        {
-        cantidad ? 
-        <Link to="/cart">
-          <button>Ir al carrito</button>
-        </Link>
-        : 
-          <ItemCount stockInit={10} initial={1} onAdd={onAdd} />
-        }
+        <ItemCount stockInit={10} initial={1} onAdd={onAdd} />
+        {cantidad && (
+          <>
+            <Link to="/cart">
+              <button>Ir al carrito</button>
+            </Link>
+            <Link to="/">
+              <button>Seguir Comprando</button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

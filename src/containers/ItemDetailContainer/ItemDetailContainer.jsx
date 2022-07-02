@@ -15,17 +15,6 @@ export const ItemDetailContainer = () => {
     );
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     fetch("/assets/data.json").then((resp) => {
-  //       resp.json().then((data) => {
-  //         setitem(data.find((e) => e.id == id));
-  //         console.log(item);
-  //       });
-  //     });
-  //   }, 500);
-  // }, []);
-
   return (
     <>
       {Object.entries(item).length === 0 ? (

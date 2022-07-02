@@ -15,14 +15,14 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
-  const clear = () => {
+  const clearCart = () => {
     setCart([]);
   };
 
-  // ME DEVUELVE LA POSICION DEL ARRAY DONDE ESTA EL PRODUCTO, O FALSE SI NO EXISTE
+  // WILL RETURN FALSE IF ID IS NOT FOUND, AND ARRAY BANK NUMBER WHEN ID IS IN THE ARRAY.
   const isInCart = (id) => {
-    let retorno = cart.find((e) => e.id == id);
-    return retorno == undefined
+    let returnPosition = cart.find((e) => e.id == id);
+    return returnPosition == undefined
       ? false
       : parseInt(cart.findIndex((e) => e.id == id));
   };
@@ -55,7 +55,7 @@ export const CartContextProvider = ({ children }) => {
       value={{
         cart,
         addToCart,
-        clear,
+        clearCart,
         getCartTotal,
         removeFromCart,
         getProductsTotal,

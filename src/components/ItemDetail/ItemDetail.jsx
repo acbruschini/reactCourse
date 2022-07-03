@@ -6,14 +6,12 @@ import { CartContext } from "../../contexts/CartContext";
 
 export const ItemDetail = ({ item }) => {
   const { cart, addToCart, isInCart } = useContext(CartContext);
-  const [cantidad, setCantidad] = useState(null);
+  const [quantity, setQuantity] = useState(null);
 
-  function onAdd(cantidad) {
-    addToCart(item, cantidad);
-    setCantidad(cantidad);
+  function onAdd(quantity) {
+    addToCart(item, quantity);
+    setQuantity(quantity);
   }
-
-  console.log(cart);
 
   return (
     <div className="row">
@@ -29,7 +27,7 @@ export const ItemDetail = ({ item }) => {
       </div>
       <div className="col-md-6 mt-5">
         <ItemCount stockInit={10} initial={1} onAdd={onAdd} />
-        {cantidad && (
+        {quantity && (
           <>
             <Link to="/cart">
               <button>Finalizar Compra</button>

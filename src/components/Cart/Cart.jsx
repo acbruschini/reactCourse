@@ -1,23 +1,24 @@
-import { faArrowRightArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import React from "react";
-import { useState, useEffect } from "react";
+import { ReactDOM } from "react";
+import { useState, useRef } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
 import ItemOnCart from "../ItemOnCart/ItemOnCart";
+import OrderForm from "../OrderForm/OrderForm";
 
 export default function Cart() {
   const { cart, getCartTotal, removeFromCart, clearCart } =
     useContext(CartContext);
   const [orderPlacedId, setOrderPlacedId] = useState(null);
-  console.log(cart.length);
 
-  const generateOrder = () => {
+  const generateOrder = (e) => {
+    e.preventDefault();
     let buyer = {
-      name: "Ariel",
-      phone: "456665574",
-      email: "ariel@sitiodeariel.com.ar",
+      name: e.target.userName.value,
+      phone: e.target.userPhone.value,
+      email: e.target.userEmail.value,
     };
     let items = cart.map((item) => {
       return { id: item.id, title: item.titulo, price: item.precio };
@@ -43,9 +44,7 @@ export default function Cart() {
             ))}
             <h2>Total: ${getCartTotal()}</h2>
           </div>
-          <div>
-            <button onClick={generateOrder}>Generar Orden</button>
-          </div>
+          <OrderForm onSubmit={generateOrder} />
         </>
       ) : (
         <div>

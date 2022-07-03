@@ -9,8 +9,8 @@ export const ItemDetailContainer = () => {
 
   useEffect(() => {
     const db = getFirestore();
-    const queryProducto = doc(db, "productos", id);
-    getDoc(queryProducto).then((resp) =>
+    const queryProduct = doc(db, "productos", id);
+    getDoc(queryProduct).then((resp) =>
       setItem({ id: resp.id, ...resp.data() })
     );
   }, []);

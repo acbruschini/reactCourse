@@ -11,14 +11,14 @@ import {
 
 export const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-  const { categoria } = useParams();
-  const [cargando, setCargando] = useState(true);
+  const { category } = useParams();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const db = getFirestore();
     const queryCollection = collection(db, "productos");
-    const queryCollectionFiltered = categoria
-      ? query(queryCollection, where("categoria", "==", categoria))
+    const queryCollectionFiltered = category
+      ? query(queryCollection, where("categoria", "==", category))
       : queryCollection;
 
     getDocs(queryCollectionFiltered)
@@ -26,14 +26,12 @@ export const ItemListContainer = () => {
         setItems(resp.docs.map((item) => ({ id: item.id, ...item.data() })))
       )
       .catch((err) => alert(err))
-      .finally(setCargando(false));
-  }, [categoria]);
-
-  console.log(items);
+      .finally(setLoading(false));
+  }, [category]);
 
   return (
     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-      {cargando ? <h2>Cargando...</h2> : <ItemList items={items} />}
+      {loading ? <h2>Cargando...</h2> : <ItemList items={items} />}
     </div>
   );
 };

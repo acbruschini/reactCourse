@@ -1,10 +1,8 @@
-import React from 'react';
-import logo from './img/cart-shopping-solid.svg';
+import React from "react";
+import icon from "./img/cart-shopping-solid.svg";
 
 function CartWidget() {
-  return (
-    <img src={logo} style={{width: '25px'}}/>
-  )
+  return <img src={icon} style={{ width: "25px" }} />;
 }
 
-export default CartWidget
+export default CartWidget;

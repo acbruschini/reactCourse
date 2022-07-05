@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 
 export const ItemDetail = ({ item }) => {
-  const { cart, addToCart, isInCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(null);
 
   function onAdd(quantity) {

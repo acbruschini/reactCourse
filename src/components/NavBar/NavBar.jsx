@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap"; //Ver de importarlo diferente
+import { Navbar, Container, Nav } from "react-bootstrap";
 import CartWidget from "../CartWidget/CartWidget";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";

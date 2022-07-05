@@ -10,32 +10,20 @@ const OrderForm = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [readyToSend, setReadyToSend] = useState({
-    name: false,
-    phone: false,
-    email: false,
-  });
+  const [emailCheck, setEmailCheck] = useState("");
 
-  const isReadyToSend = () => {
-    return Object.values(readyToSend).every((value) => value);
-  };
   const handleChangeName = (e) => {
     setName(e.target.value);
-    validateName(e.target.value)
-      ? setReadyToSend({ ...readyToSend, name: true })
-      : setReadyToSend({ ...readyToSend, name: false });
   };
   const handleChangePhone = (e) => {
     setPhone(e.target.value);
-    validatePhone(e.target.value)
-      ? setReadyToSend({ ...readyToSend, phone: true })
-      : setReadyToSend({ ...readyToSend, phone: false });
   };
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
-    validateEmail(e.target.value)
-      ? setReadyToSend({ ...readyToSend, email: true })
-      : setReadyToSend({ ...readyToSend, email: false });
+  };
+
+  const handleChangeEmailCheck = (e) => {
+    setEmailCheck(e.target.value);
   };
 
   return (
@@ -48,7 +36,7 @@ const OrderForm = ({ onSubmit }) => {
         value={name}
       />
       <p style={{ display: "inline" }}>
-        {readyToSend.name === false ? "Minimo 4 caracteres" : "OK!"}
+        {!validateName(name) ? "Minimo 4 caracteres" : "OK!"}
       </p>
       <br />
       <label type="text" htmlFor="userPhone">
@@ -61,10 +49,10 @@ const OrderForm = ({ onSubmit }) => {
         value={phone}
       />
       <p style={{ display: "inline" }}>
-        {readyToSend.phone === false ? "Minimo 4 caracteres numericos" : "OK!"}
+        {!validatePhone(phone) ? "Minimo 4 caracteres numericos" : "OK!"}
       </p>
       <br />
-      <label type="text" htmlFor="userTelefono">
+      <label type="text" htmlFor="userEmail">
         Email
       </label>
       <input
@@ -74,10 +62,33 @@ const OrderForm = ({ onSubmit }) => {
         value={email}
       />
       <p style={{ display: "inline" }}>
-        {readyToSend.email === false ? "Complete email valido" : "OK!"}
+        {!validateEmail(email) ? "Complete email valido" : "OK!"}
+      </p>
+      <br />
+      <label type="text" htmlFor="userEmailCheck">
+        Reingresar Email
+      </label>
+      <input
+        type="text"
+        onChange={handleChangeEmailCheck}
+        id="userEmailCheck"
+        value={emailCheck}
+      />
+      <p style={{ display: "inline" }}>
+        {emailCheck != email || emailCheck == ""
+          ? "Los mails no son iguales"
+          : "OK!"}
       </p>
       <div>
-        <button disabled={isReadyToSend() ? false : true} type="submit">
+        <button
+          disabled={
+            !validateEmail(email) ||
+            !validateName(name) ||
+            !validatePhone(phone) ||
+            emailCheck != email
+          }
+          type="submit"
+        >
           Generar Orden
         </button>
       </div>

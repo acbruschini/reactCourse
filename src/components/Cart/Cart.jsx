@@ -1,7 +1,6 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import React from "react";
-import { ReactDOM } from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";

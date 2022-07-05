@@ -22,7 +22,7 @@ El proyecto utiliza las siguiente dependencias:
 
 Todas las versiones de cada dependencia se encuentran en el package.json
 
-# Ariel Bruschini
+# Demo
 
 En el repositorio se puede encontrar una demo de su funcionamiento en video (demo.webm y demo.mp4)
 
